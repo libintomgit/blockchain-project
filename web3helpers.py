@@ -187,7 +187,8 @@ def ethTransfer(address, amountInEther):
 
 #  run some tests
 
-print("I am working bro")
+print("Initiating the code.... .....")
+
 print("symbol is: " + symbol())
 
 print("decimal places are: " + str(decimals()))
