@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Kadavil Kuriyakose
+    given-names: Libin Tom
+title: "Blockchian ECR20 smart contract to Ethereum test net"
+version: 1.0.0
