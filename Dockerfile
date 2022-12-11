@@ -1,12 +1,12 @@
 #Pull the python:3.8 container from the hub
-FROM python:3.8
+FROM python:3.10
 
 #Make below changes to the above continer
 
 #Copy the below files to current directry of the pulled container
 ADD web3helpers.py .
 ADD webserver.py .
-ADD .ENV .
+ADD .env .
 
 #Install python external packages 
 RUN pip install web3
