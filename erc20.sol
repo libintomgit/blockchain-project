@@ -49,7 +49,7 @@ contract MySpecialTokenSHIB3 is ERC20{
    _decimals = 18;
     balances[owner] = _totalSupply * 10**uint(_decimals);
 
-    _name = "SHB_XXXXX";
+    _name = "SHB_04420";
     _symbol = "SHB";
     }
 
