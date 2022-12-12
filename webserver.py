@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import json
 import time
-# import request
+import request
 
 # import all the functions from our function file
 from web3helpers import *

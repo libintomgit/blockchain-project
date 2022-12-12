@@ -1,7 +1,13 @@
+Name: Libin Tom
+Dockerhub repo: 
+```sh
+docker pull libintomkk/blockchain-app:latest
+```
+
 # blockchain-project
-repo for the block chain project in mcs cloud
+Repo for the blockchain project in mcs cloud computing
  
-# 1 - CREATE AN ETHEREUM ACCOUNT
+# 1 - Create a digital wallet in metamask
 > Create an Ethereum account (public/private secp256k1 keypair with associated address) on Ethereum Goerli network with at least 100-bits of entropy.
 
 ## Install metamask
@@ -27,7 +33,7 @@ and turn the show test network ON
 ```sh
 select the Goreli test network
 
-Your account should have 0 GoereliETH
+# Your account should have 0 GoereliETH
 ```
 
 ## Export Privat Key
@@ -209,22 +215,95 @@ this will automatically pull the symobl and token decimial we have deployed
 ADD CUSTOM TOKEN
 ```
 
-# 4 - Build an application.
+# 4 - Build an application to transfer the token and eth
+* Create and activate a virtual environment for python packages
+```sh
+sudo python -m venv name_of_env
 
+source name_of_env/bin/activate
+```
+* Install the python requiremtns for the Web3 and python-decouple
+```sh
+# install requiremtns using the requirements.txt file in this directory
+pip install -r requirements.txt
+```
 
+* Create a web3 helper using the .env file (to manage value in different file )
+```sh
+# change the file name of DOTenv to .env
 
+# add the contract address created in the above step to CONTRACT_ADDRESS=pate_contract_address
 
+# add the owner address to which the contract address was imported to OWNER_ADDRESS=paste_the_owner_address (find this in the metamask)
 
+# add the secret key of owner account to SUPER_SECRET_PRIVATE_KEY=secrete_key (find this in the metamask)
 
+# add the seed phrase of the account to SEED_PHRASE=seed_words (find this in the metamask)
 
+# leave the TARGET_ADDRESS= blank and commented as we provide this in the API later
 
- Total, fixed supply of 1 million tokens.
- 18 decimal places per token.
- Token owner to be the Ethereum account created above.
- Token contract to be Verified by contract creator.
- Name and description to be “SHB_XXXXX”, where XXXXX is the five rightmost digits of the submitting student’s student number.
+# add the abi generated from the goerli.etherescan contract verification abi=[{copy paste the complete abi}]
+```
+* Web3 helper code is in web3helper.py
 
+* Webserver code is in webserver.py
 
+* Run the webserver
+```sh
+python webserver.py
+
+# once the webserver is running access it using 127.0.0.1:8080 to check the status
+```
+## Now transfer the token and eth using the below cURL api
+```sh
+#Transfer eth change the address to desired target address and change the amount to desired amount
+curl --header "Content-Type: application/json" --request POST --data '{"address":"0xE1d572356C174Baa4110A203a73cEEfEA4205180", "amount":"0.05"}' http://localhost:8080/eth
+
+#Transfer token change the address to desired target address
+curl --header "Content-Type: application/json" --request POST --data '{"address":"0xE1d572356C174Baa4110A203a73cEEfEA4205180"}' http://localhost:8080/token
+```
+
+# 5 - Containerise the application using docker 
+## for ease of running application over the webserver with out installing any dependencies or ther settings
+
+## Make sure to install docker engine and docker is running.
+
+* Build the docker container using the Docerfile in this directory
+```sh
+doceker build -t reponame/imagename
+
+# check the image is docker images 
+docker images
+```
+* Run the docker continer
+```sh
+#Create a direcory in the current directory (we will use this to mount the volume to the docker to make changes in the application later poin)\
+mkdir dockervol
+
+#Run docker container using the image we created earlier
+docker run --name custom_name -p 8090:8080 -d -v $(pwd)/dockervol:/var/dockervol reponame/imagename
+```
+
+## Use the cURL api to so the transfer by replacing the http://localhost:8080/eth_or_token to http://localhost:8090/eth_or_token
+
+* Push the new image to docker hub
+```sh
+create a docker hub account 
+
+create a repository
+
+name the repository with reponame/imagename
+
+# push the image to the created repo to from the terminal
+
+docker login -u username
+# enter the password when propted
+
+docker push reponame/imagename:latest
+```
+* Pull the image from the docker hub
+```sh
+docker pull reponame/imagename:latest
 
 
 
