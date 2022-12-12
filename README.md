@@ -1,5 +1,5 @@
-Name: Libin Tom
-Dockerhub repo: 
+<strong>Name: Libin Tom <br>
+Dockerhub repo: </strong>
 ```sh
 docker pull libintomkk/blockchain-app:latest
 ```
@@ -11,23 +11,19 @@ Repo for the blockchain project in mcs cloud computing
 > Create an Ethereum account (public/private secp256k1 keypair with associated address) on Ethereum Goerli network with at least 100-bits of entropy.
 
 ## Install metamask
-```sh
-search for metamask
-and download plugin from https://metamask.io/download/
-```
+
+* Download plugin from https://metamask.io/download/
 
 ## Create account
-```sh
-click on the icon on in the extention to create new account
+
+* Click on the metamask entention in the browser extentions list to create a new digital wallet account
 
 ## this will open up in a new tab and follow the onscreen instruction
-```
-## Select the goreli test network
-```sh
-Once the accout is created and logged in. Click on the right top network dropdown and click on the show/hide test network
 
-and turn the show test network ON
-```
+* Select the goreli test network
+
+> Once the accout is created and logged in. Click on the right top network dropdown and click on the show/hide test network
+> and turn the show test network ON
 > Note: now you have your test netwrok listed in the Network dropdown
 
 ```sh
@@ -37,198 +33,119 @@ select the Goreli test network
 ```
 
 ## Export Privat Key
-```sh
-click on the more options (3 dots) and Accout details
 
-Export private key
-```
+* Click on the more options (3 dots) and Accout details
+* Export private key
 
 ## View account on ether scan
-```sh
-click on the more options (3 dots) and view account on ether scan
 
-Export private key
-```
+* Click on the more options (3 dots) and view account on ether scan
+
+## Export private key
+* Click on the metamask account more options to show the private key
+> Store it safe some where
 
 # 2 - Create an ERC20-compliant, fixed-supply token with the following parameters:
-## Smart contract
-* Smart contract is code running on the blockchain.
-
-```sh
-smart contract is created using the Remix (a smart contract code editor)
-
-https://remix.ethereum.org/
-
-```
-* Under contracts directory in remix, select 1_storage.sol file
-* that should have some code like below
-
-```sh
-// SPDX-License-Identifier: GPL-3.0
-pragma solidity >=0.7.0 <0.9.0;
-/**
- * @title Storage
- * @dev Store & retrieve value in a variable
- */
-contract Storage {
-    uint256 number;
-    /**
-     * @dev Store value in variable
-     * @param num value to store
-     */
-    function store(uint256 num) public {
-        number = num;
-}
-    /**
-     * @dev Return value
-     * @return value of 'number'
-     */
-    function retrieve() public view returns (uint256){
-        return number;
-} }
-
-## This smart contract stores a number on the blockchain and allows it to be retrieved
-
-```
-## Testing Your Smart Contract
-```sh
-Choose Environment Remix VM in Deploy and Run Transactions Menu.
-
-click deploy
-
-```
 ## Creating a Security Audited, Production Ready ERC20 contract
-* In order to create an ERC20 contract that has been security audited, we will use one of the Open Zeppelin contracts.
-Open Zeppelin contracts are security audited best practices implementations. They are used throughout the industry.
-Their github is at the following address:
+> In order to create an ERC20 contract that has been security audited, we will use one of the Open Zeppelin contracts.
+> Open Zeppelin contracts are security audited best practices implementations. They are used throughout the industry.
+> Their github is at the following address:
+* Refferance of the code in the ecr20.sol
+> https://github.com/OpenZeppelin
+> https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/token/ERC20
+> https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC2 0/ERC20.sol
 
-## skip to next step - this is just for refferance as in from where the code was originally taken
-```sh 
+## Create Smart contract
+> Smart contract is code running on the blockchain.
+* smart contract is created using the Remix IDE (buit for the purose)
+* https://remix.ethereum.org/
 
-https://github.com/OpenZeppelin
+* In remix, create a file with .sol extention (ex. erc20.sol)
+* Copy the code from the [erc20.sol](https://github.com/libintomgit/blockchain-project/blob/main/erc20.sol) to the new file in remix
+> This is fully working smart contract created using the OpenZeppelin
+> This smart contract stores a number on the blockchain and allows it to be retrieved
 
-# As we are looking for ERC20 contract, we need to go to the following URL:
-
-https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/token/ERC20
-
-# We’re going to use their erc20.sol contract.
-
-https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC2 0/ERC20.sol
-```
-## Use the fully working erc-20.eol
-[use this erc-20.eolfile erc-20.eol](https:://)
-```sh
-create a file called erc20.eol in remix
-
-copy the content from the above [file]([use this erc-20.eolfile erc-20.eol]) and paste it in the erc-20.eol
-```
 ## change the token name
+* Inside the code just pasted find and modifiy the below mentioned variables with your token name and symbol to your desired one
 ```sh
-inside the code just pasted find modifiy the below mentioned variables with your last 5 digits of your student id
-
 _name = "SHB_XXXXX";
 _symbol = "SHB_XXXXX";
 ```
+## Compile smart contract
+* Click on the compile tab and run the compiler in the solidiy compiler
 
-## Compile the code
-```sh
-navigate to the COMPILE icon in the left side pane of remix
+> Makesure to fix the errors if any and recompile until not errors
 
-and click on the COMPILE blue button
+## Deploy compiled smart contract
+> To the metamask digital wallet
 
-```
-## Deploy
-* Deploy the token to the goerliETH accout
-```sh
-navigate to DEPLOY icon in the left side pane of remix
+* In environment select INJECTED PROVIDER - metamask
+* Now select the account and approve it when the metamask pliggin will openup
 
-change the environment to INJECTED PROCIDER - METAMASK
+## View the transaction on etherscan
+* In the right below terminal pannel of remix, find the transactoin status and link to ETHERSCAN, click on it to navigate
 
-it will open the metamask pluggin to connect with the remix and will add the account to the remix automatically
-```
-```sh
-change the gas limit to 30K
-
-select the contract MYSPECIALTOKENSHIB3-erc20.sol
-
-then DEPLOY
-```
-```sh
-metamask will popup for confirming the transaction - CONFIRM
-```
-* view the transaction on etherscan
-```sh
-in the right below terminal pannel of remix, find the transactoin status and link to ETHERSCAN
-
-click on it to navigate
-```
 ## VERIFY
-* assuming you are in the etherscan
-```sh 
-click in the CONTRACT tab (usually in the middle of the page)
+> assuming you are in the etherscan
 
-click on the verify and publish
+* Click in the CONTRACT tab (usually in the middle of the page)
 
-## this will redirects to VERIFY AND PUBLISH CONTRACT SOURCE CODE
+* Click on the verify and publish
 
-leave the contract address area as is with your deployed contract hash
+> This will redirects to VERIFY AND PUBLISH CONTRACT SOURCE CODE
 
-select the compiler type SOLIDITY(single file)
+* Seave the contract address area as is with your deployed contract hash
 
-compiler version to the compiler used to compile in the remix mostly 0.8.7+commit.e28d00a7
+* Select the compiler type SOLIDITY(single file)
 
-license type none
+* compiler version to the compiler used to compile in the remix (mostly 0.8.7+commit.e28d00a7)
 
-click  CONTINUE
-```
-* copy paste code to verify
+* License type none
 
-```sh
+* click  CONTINUE
 
-copy the whole erc20.sol code from the remix and paste it in the ENTER THE SOLIDITY CONTRACT CODE BELOW
+## Copy paste code to verify
 
-scrol down.. make sure you are not a robot
+* Copy the whole erc20.sol code from the remix and paste it in the ENTER THE SOLIDITY CONTRACT CODE BELOW
 
-VERIFY AND PUBLISH
+* scrol down.. make sure you are not a robot
 
-## This will verify and publish the block
+## Verify and Publish
+> This will verify and publish the block
 
-scrol down and copy the ABI CONTRACT -  CONTENT and store it in a file for now
-
-```
+> scrol down and copy the ABI CONTRACT -  CONTENT and store it in a file for now
 
 # 3 - Deploy the token contract to the Ethereum Testnet (Goerli).
 ## Import token to account
-```sh
-copy the transaction hash from the etherscan (to adderess)
 
-open the metamask, click on the more option (3 dots) for expanded view
+* Copy the transaction hash from the etherscan (to adderess)
 
-click on the ASSESTS of goerliETH accout (is it place below the account balance and next to activity)
+* Open the metamask, click on the more option (3 dots) for expanded view
 
-click on the import tokens below
+* Click on the ASSESTS of goerliETH accout (is it place below the account balance and next to activity)
 
-paste the token to TOKEN CONTRACT ADDRESS
+* Click on the import tokens below
 
-this will automatically pull the symobl and token decimial we have deployed
+* Paste the token to TOKEN CONTRACT ADDRESS
 
-ADD CUSTOM TOKEN
-```
+> his will automatically pull the symobl and token decimial we have deployed
 
 # 4 - Build an application to transfer the token and eth
+## Application to transfer the token and eth over the api rather using the web console
+
 * Create and activate a virtual environment for python packages
 ```sh
 sudo python -m venv name_of_env
 
 source name_of_env/bin/activate
 ```
-* Install the python requiremtns for the Web3 and python-decouple
+* Install the python [requiremtns](https://github.com/libintomgit/blockchain-project/blob/main/requirements.txt) for the Web3 and python-decouple
 ```sh
 # install requiremtns using the requirements.txt file in this directory
 pip install -r requirements.txt
 ```
 
-* Create a web3 helper using the .env file (to manage value in different file )
+* Create a web3 helper using the [.env](https://github.com/libintomgit/blockchain-project/blob/main/DOTenv) file (to manage value in different file )
 ```sh
 # change the file name of DOTenv to .env
 
@@ -244,9 +161,9 @@ pip install -r requirements.txt
 
 # add the abi generated from the goerli.etherescan contract verification abi=[{copy paste the complete abi}]
 ```
-* Web3 helper code is in web3helper.py
+* Web3 helper code is in [web3helper.py](https://github.com/libintomgit/blockchain-project/blob/main/web3helpers.py)
 
-* Webserver code is in webserver.py
+* Webserver code is in [webserver.py](https://github.com/libintomgit/blockchain-project/blob/main/webserver.py)
 
 * Run the webserver
 ```sh
@@ -304,7 +221,9 @@ docker push reponame/imagename:latest
 * Pull the image from the docker hub
 ```sh
 docker pull reponame/imagename:latest
+```
 
+# EOF
 
 
 
